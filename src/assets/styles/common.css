@@ -1,0 +1,39 @@
+.normal_btn,.focus_btn{
+    cursor: pointer;
+    box-shadow: 0 6px 10px 0 rgba(66,0,193,0.24);
+    border:1px solid;
+    color: #1817E6;
+    border-color:#5A59FF #4D1EA9;
+}
+.normal_btn:hover{
+    opacity: 0.92;
+    background: #EEEDFF;
+    box-shadow: 0 4px 7px -2px rgba(66,0,193,0.24);
+}
+.focus_btn{
+    background-image: linear-gradient(-40deg,#5A59FF 0%, #6128CF 100%);
+    color: #fff!important;
+}
+.focus_btn:hover{
+    opacity: 0.8;
+    box-shadow: 0 6px 10px 0 rgba(66,0,193,0.10);
+}
+.cl_both:before,
+.cl_both:after {
+    content: " ";
+    display: table;
+}
+.cl_both:after {
+    clear: both;
+}
+.c_flex{
+display: flex;
+display: -webkit-flex;
+}
+.cl_l {
+float: left;
+}
+
+.cl_r {
+float: right;
+}
