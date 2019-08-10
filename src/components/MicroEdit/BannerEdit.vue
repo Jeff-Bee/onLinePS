@@ -21,7 +21,17 @@
                 <!--左侧栏-->
                 <el-aside width="215px" class="left-aside">
                     <!--图层~~~~~~~~~~~~~~~~~~~~~~-->
-                    <MicroLayer ref="MicroLayer" :toggleVisiable="toggleVisiable" :setActiveObj="setActiveObject" :changeLevel="changeLevel" @delItem="delItem" :micro_layer_data="micro_layer_data"></MicroLayer>
+                    <MicroLayer ref="MicroLayer" 
+                        :toggleVisiable="toggleVisiable" 
+                        :setActiveObj="setActiveObject" 
+                        :changeLevel="changeLevel" 
+                        @delItem="delItem" 
+                        :micro_layer_data="micro_layer_data"
+                        :addImage="addImage"
+                        :addLayer="addLayer"
+                        :addTxt="addTxt"
+                        >
+                    </MicroLayer>
                 </el-aside>
                 <!--主体内容canvas-->
                 <el-main>
@@ -157,6 +167,20 @@ export default {
         //设置元素属性值
         canvasUpdate: function(data) {
             canvasDemo.setCss(data);
+        },
+        //新增图层信息
+        addImage:function(obj){
+            //转换数据
+            canvasDemo.createImage(obj);
+        },
+        //新增文案信息
+        addTxt:function(obj){
+            //转换数据
+            canvasDemo.createTxt(obj);
+        },
+        //新增图层信息到左侧图层列表
+        addLayer(item){
+            this.micro_layer_data.push(item);
         },
         //画布放大缩小
         changeZoom: function(type) {

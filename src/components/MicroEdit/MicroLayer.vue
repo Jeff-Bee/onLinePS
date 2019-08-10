@@ -3,8 +3,12 @@
     <div class="micro_layer">
         <div class="title">
             图层
-            <div class="add-icon" @mouseover="addMaterial" @mouseleave="hiddenAddMaterial">
-                <i class="add-layer"></i>
+            <div class="add-icon">
+                <!-- <i class="add-layer"></i> -->
+                <ul>
+                    <li @click="addPic">添加图层</li>
+                    <li @click="addText">添加文案</li>
+                </ul>
             </div>
         </div>
         <div class="list_box">
@@ -47,20 +51,21 @@
 
                 }
             },
-            //新增图层
-            showAddMaterial:{
+            /* canvas中新增图片 */
+            addImage:{
                 type:Function,
-                default:function(){
-
-                }
+                default:function(){}
             },
-            //关闭新增图层
-            closeAddMaterial:{
+            /* canvas中新增文本 */
+            addTxt:{
                 type:Function,
-                default:function(){
-
-                }
-            }
+                default:function(){}
+            },
+            /*更新左侧图层信息 */
+            addLayer:{
+                type:Function,
+                default:function(){}
+            },
         },
         data(){
             return {
@@ -184,12 +189,42 @@
             setActiveObject(order){
                 this.selectIndex=parseInt(order);
             },
-            //新增素材
-            addMaterial(){
-                this.showAddMaterial();
+            //新增图层
+            addPic(){
+                let obj={};
+                let id=this.micro_layer_data.length+1;
+                obj.type='7-1';
+                obj.bboxX1=0;
+                obj.bboxY1=0;
+                obj.swing=1;
+                obj.title='图层'+id;
+                obj.layerPictureUrl='new-pic.png';
+                obj.layerIsEdit=1;
+                obj.isGif=0;
+                this.addImage(obj);
+                var layerItem={visiable:1,type:obj.type,text:obj.title,id:id};
+                this.addLayer(layerItem);
             },
-            hiddenAddMaterial(){
-                this.closeAddMaterial();
+            addText(){
+                let obj={};
+                let id=this.micro_layer_data.length+1;
+                obj.type='3-1';
+                obj.top=0;
+                obj.left=0;
+                obj.bboxX1=0;
+                obj.bboxY1=0;
+                obj.swing=1;
+                obj.title='文案'+id;
+                obj.layerPictureUrl='new-pic.png';
+                obj.fontType=''
+                obj.color='#000'
+                obj.fontSize=20
+                obj.fontBold=0
+                obj.fontItalic=0
+                obj.text='这里是新增文案内容'
+                this.addTxt(obj);
+                var layerItem={visiable:1,type:obj.type,text:obj.title,id:id};
+                this.addLayer(layerItem);
             }
                 
         }
@@ -227,7 +262,7 @@
             span {
                 cursor: pointer;
                 float: left;
-                margin: 14px 6px 0 9px;
+                margin: 11px 6px 0 9px;
             }
             .work_micro_i_eye{
                 color: #3785ff;
@@ -252,11 +287,16 @@
         }
     }
     .add-icon{
-        width: 60px;
         height:40px;
         text-align: center;
         position: relative;
         float:right;
+        li{
+            float: left;
+            padding-left: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
     }
     .add-layer{
         position: absolute;
