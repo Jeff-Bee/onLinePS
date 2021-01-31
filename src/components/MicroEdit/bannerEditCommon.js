@@ -401,18 +401,25 @@ let fabricCommon = function (fabricObject,that) {
         //字体类的修改
         if (obj.cssName != "realFontFamily") { //不是修改字体样式
             currentActive.set(obj.cssName, obj.cssValue).setCoords();
-            if (obj.cssName == "fontSize"&&obj.cssValue<12) {//修改字体大小,且字体大小是小于12的
-                let scale =obj.cssValue/12;
-                console.log(scale);
-                currentActive.scale(scale).setCoords();
+            // if (obj.cssName == "fontSize"&&obj.cssValue<12) {//修改字体大小,且字体大小是小于12的
+            //     let scale =obj.cssValue/12;
+            //     console.log(scale);
+            //     currentActive.scale(scale).setCoords();
+            // }
+            // 解决切换颜色值,字体大小,下划线,加粗等无法重绘文字内容的问题
+            let stroke = currentActive.stroke;
+            if(stroke !== '#000000'){
+                currentActive.set('stroke','#000000');
+            }else{
+                currentActive.set('stroke','#ffffff');
             }
-            let oldValue = currentActive.fontFamily;
-            if (currentActive.fontFamily == "黑体") {
-                currentActive.set("fontFamily", "微软雅黑").setCoords();
-            } else {
-                currentActive.set("fontFamily", "黑体").setCoords();
-            }
-            currentActive.set("fontFamily", oldValue).setCoords();
+            currentActive.set('stroke',stroke);
+            // if (currentActive.fontFamily == "黑体") {
+            //     currentActive.set("fontFamily", "微软雅黑").setCoords();
+            // } else {
+            //     currentActive.set("fontFamily", "黑体").setCoords();
+            // }
+            // currentActive.set("fontFamily", oldValue).setCoords();
         }else { //修改字体样式
             currentActive.set(obj.cssName, obj.cssValue).setCoords();
             console.log('_fabricInstance.loadFont');
