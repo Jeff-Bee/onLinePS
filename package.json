@@ -14,7 +14,7 @@
     "axios": "^0.21.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.6.1",
-    "fabric": "^3.3.2",
+    "fabric": "^4.3.0",
     "fontfaceobserver": "^2.1.0",
     "glfx.js__temp": "^1.0.2",
     "vue": "^2.5.2",
